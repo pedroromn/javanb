@@ -1,3 +1,5 @@
+package jvm.work.bourne;
+
 public class Invoice{
     /* Invoice: Factura  */
 
@@ -11,7 +13,7 @@ public class Invoice{
 
         boolean validate = number instanceof String;
         this.number = validate ? number:"XXXXX";
-        boolean validate = description instanceof String;
+        validate = description instanceof String;
         this.description = validate ? description:"Description ...";
         this.quantity = (quantity > 0) ? quantity:0;
         this.price = (price > 0.0) ? price:0.0;
@@ -19,14 +21,13 @@ public class Invoice{
 
     public void setNumber(String number){
          boolean validate = number instanceof String;
-         this.number = validate ? number:
-             System.out.printf("Escriba numero valido%n");      
+         this.number = validate ? number: "XXXXX";
+                   
     }
 
     public void setDescription(String description){
         boolean validate = description instanceof String;
-        this.description = validate ? description:
-             System.out.printf("Invoice description ...%n");
+        this.description = validate ? description:"XXXXXXXXXXXX";
     }
 
     public void setQuantity(int quantity){

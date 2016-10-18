@@ -1,3 +1,5 @@
+package jvm.work.bourne;
+
 public class Account
 {
     private String name; // instance variable
@@ -10,14 +12,17 @@ public class Account
         }
     }
 
+    Account() {
+
+    }
+
     public void withdraw(double withdrawAmount){
         if(withdrawAmount > this.balance){
             System.out.printf("Withdrawal amount exceeded account"
-                              +"balance");
-            else{
+                                          +"balance");
+        }else{
                 this.balance = this.balance - withdrawAmount;
             }
-        }
     }
 
     public void deposit(double depositAmount){

@@ -1,3 +1,5 @@
+package jvm.work.bourne;
+
 import java.util.Scanner;
 
 public class AccountTest

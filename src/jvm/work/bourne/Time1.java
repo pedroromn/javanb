@@ -1,3 +1,5 @@
+package jvm.work.bourne;
+
 public class Time1{
 
     private int hour; // 0 - 23
@@ -8,7 +10,7 @@ public class Time1{
         if(hour < 0 || hour >= 24 || minute < 0 || minute >= 60 ||
            second < 0 || second >= 60){
 
-            throw new IlegalArgumentException(
+            throw new IllegalArgumentException(
                "hour, minute and/or second was out of range");
         }
 
