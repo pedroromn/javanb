@@ -28,9 +28,42 @@ public class TurtleGraphics{
                             {9}};
         
         int[][] floor = new int[20][20];
-        // Arrays.fill(floor, 0);
         displayFloor(floor);
         System.out.printf("%n");
+        
+        for(int row = 0; row < commands.length; row++){
+            if(commands[row][0] == 1){
+                System.out.printf("Pen up %n");
+            }
+            
+            if(commands[row][0] == 2){
+                System.out.printf("Pen down %n");
+            }
+            
+            if(commands[row][0] == 3){
+                System.out.printf("Turn right %n");
+            }
+            
+            if(commands[row][0] == 4){
+                System.out.printf("Turn left %n");
+            }
+            
+            if(commands[row][0] == 5){
+                System.out.printf("Move -> %d %n", commands[row][1]);
+                // muevase la cantidad de posiciones como indique
+                // commands[row][1]
+            }
+            
+            if(commands[row][0] == 6){
+                displayFloor(floor);
+            }
+            
+            if(commands[row][0] == 9){
+                System.out.printf("End");
+                break;
+            }
+            
+        }
     }
 
     public static void displayFloor(int[][] floor){
