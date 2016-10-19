@@ -18,8 +18,9 @@ public class TurtleGraphics{
           6 Display the 20-by-20 array
           
           9 End of data(sentinel)
-        
-          The turtle is always into the box.  
+          
+        Precondition:
+          <<The turtle is always into the box>>  
         
          */
 
@@ -36,29 +37,23 @@ public class TurtleGraphics{
         
         int[][] floor = new int[NUMBER_ROWS][NUMBER_COLUMNS];
         int[] coords = new int[2];
-        boolean[] state = new boolean[4];
+        boolean[] direction = new boolean[4];
         
         
         int pen = 1; // up => 1 - down => 2
         
-        // current state
-        boolean currentOnRows = false;
-        boolean currentOnColumns = true;
-        boolean currentPositive = true;
-        boolean currentNegative = false;
+        // current direction -> right
+        boolean currentWay = true;
+        boolean currentSigne = true;
         
-        state[0] = true; // right
-        state[1] = false; // left
-        state[2] = false; // up
-        state[3] = false; // down
-        
-        // previous state
-        boolean previousOnRows = currentOnRows;
-        boolean previousOnColumns = currentOnColumns;
-        boolean previousPositive = currentPositive;
-        boolean previousNegative = currentNegative;
+        // previous direction -> right
+        boolean previousWay = currentWay;
+        boolean previousSigne = currentSigne;
 
-        
+        direction[0] = true; // right
+        direction[1] = false; // left
+        direction[2] = false; // up
+        direction[3] = false; // down
         
         for(int row = 0; row < commands.length; row++){
             
@@ -73,47 +68,35 @@ public class TurtleGraphics{
             if(commands[row][0] == 3){
                 
                 // right -> down
-                if(previousOnRows == false && previousOnColumns == true &&
-                        previousPositive == true && previousNegative == false){
-                    state[0] = false;
-                    state[3] = true;
-                    currentOnRows = true;
-                    currentOnColumns = false;
-                    currentPositive = false;
-                    currentNegative = true;
+                if(previousWay == true && previousSigne == true){
+                    currentWay = false;
+                    currentSigne = true;
+                    direction[0] = false;
+                    direction[3] = true;
                 }
                 
                 // down -> left
-                if(previousOnRows == true && previousOnColumns == false &&
-                        previousPositive == false && previousNegative == true){
-                    state[3] = false;
-                    state[1] = true;
-                    currentOnRows = false;
-                    currentOnColumns = true;
-                    currentPositive = false;
-                    currentNegative = true;
+                if(previousWay == false && previousSigne == true){
+                    currentWay = true;
+                    currentSigne = false;
+                    direction[3] = false;
+                    direction[1] = true;
                 }
                 
                 // left -> up
-                if(previousOnRows == false && previousOnColumns == true &&
-                        previousPositive == false && previousNegative == true){
-                    state[1] = false;
-                    state[2] = true;
-                    currentOnRows = true;
-                    currentOnColumns = false;
-                    currentPositive = true;
-                    currentNegative = false;
+                if(previousWay == true && previousSigne == false){
+                    currentWay = false;
+                    currentSigne = false;
+                    direction[1] = false;
+                    direction[2] = true;
                 }
                 
                 // up -> right
-                if(previousOnRows == true && previousOnColumns == false &&
-                        previousPositive == true && previousNegative == false){
-                    state[2] = false;
-                    state[0] = true;
-                    currentOnRows = false;
-                    currentOnColumns = true;
-                    currentPositive = true;
-                    currentNegative = false;
+                if(previousWay == false && previousSigne == false){
+                    currentWay = true;
+                    currentSigne = true;
+                    direction[2] = false;
+                    direction[0] = true;
                 }
 
             }
@@ -121,47 +104,35 @@ public class TurtleGraphics{
             if(commands[row][0] == 4){
                 
                 // right -> up
-                if(previousOnRows == false && previousOnColumns == true &&
-                        previousPositive == true && previousNegative == false){
-                    state[2] = true;
-                    state[0] = false;
-                    currentOnRows = true;
-                    currentOnColumns = false;
-                    currentPositive = true;
-                    currentNegative = false;
+                if(previousWay == true && previousSigne == true){
+                    currentWay = false;
+                    currentSigne = false;
+                    direction[0] = false;
+                    direction[2] = true;
                 }
                 
                 // up -> left
-                if(previousOnRows == true && previousOnColumns == false &&
-                        previousPositive == true && previousNegative == false){
-                    state[1] = true;
-                    state[2] = false;
-                    currentOnRows = false;
-                    currentOnColumns = true;
-                    currentPositive = false;
-                    currentNegative = true;
+                if(previousWay == false && previousSigne == false){
+                    currentWay = true;
+                    currentSigne = false;
+                    direction[2] = false;
+                    direction[1] = true;
                 }
                 
                 // left -> down
-                if(previousOnRows == false && previousOnColumns == true &&
-                        previousPositive == false && previousNegative == true){
-                    state[3] = true;
-                    state[1] = false;
-                    currentOnRows = true;
-                    currentOnColumns = false;
-                    currentPositive = false;
-                    currentNegative = true;
+                if(previousWay == true && previousSigne == false){
+                    currentWay = false;
+                    currentSigne = true;
+                    direction[1] = false;
+                    direction[3] = true;
                 }
                 
                 // down -> right
-                if(previousOnRows == true && previousOnColumns == false &&
-                        previousPositive == false && previousNegative == true){
-                    state[0] = true;
-                    state[3] = false;
-                    currentOnRows = false;
-                    currentOnColumns = true;
-                    currentPositive = false;
-                    currentNegative = true;
+                if(previousWay == false && previousSigne == true){
+                    currentWay = true;
+                    currentSigne = true;
+                    direction[0] = true;
+                    direction[3] = false;
                 }
             }
             
@@ -169,7 +140,7 @@ public class TurtleGraphics{
             if(commands[row][0] == 5){
                 // muevase la cantidad de posiciones como indique
                 // commands[row][1]
-                moveTurtle(floor, coords, pen, state, commands[row][1]);
+                moveTurtle(floor, coords, pen, direction, commands[row][1]);
             }
             
             if(commands[row][0] == 6){
@@ -181,10 +152,8 @@ public class TurtleGraphics{
                 break;
             }
             
-            previousOnRows = currentOnRows;
-            previousOnColumns = currentOnColumns;
-            previousPositive = currentPositive;
-            previousNegative = currentNegative;
+            previousWay = currentWay;
+            previousSigne = currentSigne;
            
         }
         
@@ -204,7 +173,7 @@ public class TurtleGraphics{
     }
     
     public static void moveTurtle(int[][] floor, int[] coords, int pen, 
-            boolean[] state, int steps){
+            boolean[] direction, int steps){
         // TO DO
     }
 
