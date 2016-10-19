@@ -36,7 +36,7 @@ public class TurtleGraphics{
                             {9}};
         
         int[][] floor = new int[NUMBER_ROWS][NUMBER_COLUMNS];
-        int[] coords = new int[2];
+        int[] coords = new int[2]; // init coords (0,0)
         boolean[] direction = new boolean[4];
         
         
