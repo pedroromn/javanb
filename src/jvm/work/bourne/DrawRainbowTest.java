@@ -1,4 +1,7 @@
+package jvm.work.bourne;
+
 import javax.swing.JFrame;
+
 
 public class DrawRainbowTest
 {
