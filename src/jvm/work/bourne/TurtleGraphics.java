@@ -139,7 +139,7 @@ public class TurtleGraphics{
             
             if(commands[row][0] == 5){
                 // muevase la cantidad de posiciones como indique
-                // commands[row][1]
+                // commands[row][1] -> number steps
                 moveTurtle(floor, coords, pen, direction, commands[row][1]);
             }
             
@@ -174,7 +174,35 @@ public class TurtleGraphics{
     
     public static void moveTurtle(int[][] floor, int[] coords, int pen, 
             boolean[] direction, int steps){
-        // TO DO
+        
+        if(direction[0]){
+            // move right
+            if(coords[0] != 0){
+                for(int k = 1; k <= steps; k++){
+                    coords[0] -= 1;
+                    if(pen == 2){
+                        floor[coords[0]][coords[1]] = 1;
+                    }
+                    
+                    // finish move -> row 0
+                    if(coords[0] == 0){
+                        break; 
+                    }
+                }
+            }
+        }
+        
+        if (direction[1]){
+            // move left
+        }
+        
+        if(direction[2]){
+            // move up
+        }
+        
+        if(direction[3]){
+            // move down
+        }
     }
 
     
