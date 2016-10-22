@@ -25,7 +25,7 @@ public class TurtleGraphics{
          */
 
         // Example commands
-        int[][] commands = {{2},
+        /*int[][] commands = {{2},
                             {5,12},
                             {3},
                             {5,12},
@@ -36,11 +36,28 @@ public class TurtleGraphics{
                             {1},
                             {6},
                             {9}};
+        */
+        
+        int[][] commands = {{2},
+                            {5,12},
+                            {3},
+                            {5,6},
+                            {3},
+                            {5,9},
+                            {4},
+                            {5,12},
+                            {3},
+                            {5,3},
+                            {3},
+                            {5,16},
+                            {1},
+                            {6},
+                            {9}};
         
         int[][] floor = new int[NUMBER_ROWS][NUMBER_COLUMNS];
         int[] coords = new int[2]; // init coords (0,0)
-        coords[0] = 5;
-        coords[1] = 5;
+        coords[0] = 2;
+        coords[1] = 3;
         boolean[] direction = new boolean[4];
         
         
@@ -167,14 +184,14 @@ public class TurtleGraphics{
 
     public static void displayFloor(int[][] floor){
         System.out.printf("%n");
-        for (int[] floor1 : floor) {
+        for (int[] floorRow : floor) {
             System.out.printf("\t\t");
-            for (int column = 0; column < floor1.length; column++) {
+            for (int column = 0; column < floorRow.length; column++) {
                 
-                if(floor1[column] == 1){
+                if(floorRow[column] == 1){
                     System.out.printf("%c ", '*');
                 }else{
-                    System.out.printf("%d ", floor1[column]);
+                    System.out.printf("%d ", floorRow[column]);
                 }
                 
             }
@@ -188,7 +205,7 @@ public class TurtleGraphics{
         if(direction[0]){
             // move right
             if(coords[1] != NUMBER_COLUMNS - 1){
-                for(int k = 1; k <= steps; k++){
+                for(int k = 1; k < steps; k++){
                     coords[1] += 1;
                     if(pen == 2){
                         floor[coords[0]][coords[1]] = 1;
@@ -208,7 +225,7 @@ public class TurtleGraphics{
         if (direction[1]){
             // move left
             if(coords[1] != 0){
-                for(int k = 1; k <= steps; k++){
+                for(int k = 1; k < steps; k++){
                     coords[1] -= 1;
                     if(pen == 2){
                         floor[coords[0]][coords[1]] = 1;
@@ -228,7 +245,7 @@ public class TurtleGraphics{
         if(direction[2]){
             // move up
             if(coords[0] != 0){
-                for(int k = 1; k <= steps; k++){
+                for(int k = 1; k < steps; k++){
                     coords[0] -= 1;
                     if(pen == 2){
                         floor[coords[0]][coords[1]] = 1;
@@ -248,7 +265,7 @@ public class TurtleGraphics{
         if(direction[3]){
             // move down
             if(coords[0] != NUMBER_ROWS - 1){
-                for(int k = 1; k <= steps; k++){
+                for(int k = 1; k < steps; k++){
                     coords[0] += 1;
                     if(pen == 2){
                         floor[coords[0]][coords[1]] = 1;
