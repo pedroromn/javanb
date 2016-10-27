@@ -1,2 +1,7 @@
 jh2p(deitel) -> 324(368 of 1245) // Recordar pag 301 -> ej 7.19, 7.21, ...
 
+Data Structures and Algorithms in Java -> 5 (23 of 738)
+
+data-structures-abstraction--design-java -> 2 (28 of 686)
+
+Estructuras de datos en java - Joyanes -> 35 / 561
